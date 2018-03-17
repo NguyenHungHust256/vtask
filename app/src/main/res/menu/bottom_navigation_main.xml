@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_one"
+        android:enabled="true"
+        android:icon="@drawable/ic_event_note_black_24dp"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle" />
+    <item
+        android:id="@+id/action_two"
+        android:enabled="true"
+        android:icon="@drawable/ic_project"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle" />
+    <item
+        android:id="@+id/action_three"
+        android:enabled="true"
+        android:icon="@drawable/ic_notifications_none_black_24dp"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle" />
+    <item
+        android:id="@+id/action_four"
+        android:enabled="true"
+        android:icon="@drawable/ic_people_outline_black_24dp"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle" />
+</menu>

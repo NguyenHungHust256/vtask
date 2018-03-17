@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="11"
+    tools:context="com.example.bahung.vtask.ui.activity.MainChatActivity">
+
+    <include
+        android:id="@+id/toolbar_chat"
+        layout="@layout/toolbar_main_chat" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#e4e3e3"
+        android:elevation="1dp"
+
+        android:orientation="horizontal"
+        android:weightSum="8">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:gravity="center"
+            android:text="Thiết kế android cho app VTASK"
+            android:textColor="#00ac00"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_expand_more_black_24dp" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/layout_main_chat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9">
+
+    </FrameLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:elevation="0.5dp"
+        android:layout_alignTop="@id/option_chat"
+        android:background="#CCCCCC" />
+
+    <LinearLayout
+        android:id="@+id/option_chat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:padding="3dp"
+
+        android:weightSum="8">
+
+        <ImageView
+            android:id="@+id/chat_id"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:src="@drawable/ic_chat_black_24dp" />
+
+        <ImageView
+            android:id="@+id/time_id"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:src="@drawable/ic_timelapse_black_24dp" />
+
+        <ImageView
+            android:id="@+id/banking_id"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="7dp"
+            android:src="@drawable/ic_pie_chart_black_24dp" />
+
+        <ImageView
+            android:id="@+id/document_id"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="3px"
+            android:layout_weight="1"
+            android:padding="7dp"
+            android:src="@drawable/ic_attach_file_black_24dp" />
+
+        <ImageView
+            android:id="@+id/member_chat_id"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="7dp"
+            android:src="@drawable/ic_perm_identity_black_24dp" />
+        <ImageView
+            android:id="@+id/back_chat_id"
+            android:layout_width="0dp"
+            android:layout_weight="0"
+            android:padding="7dp"
+            android:src="@drawable/ic_cancel_black_24dp"
+            android:layout_height="match_parent" />
+        <LinearLayout
+            android:id="@+id/layout_chat_id"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@drawable/border_radius"
+            android:focusable="true"
+            android:layout_marginTop="5px"
+            android:layout_marginBottom="5px"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <EditText
+                android:id="@+id/edtInput"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:background="@null"
+                android:hint="OK"
+                android:padding="5px"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLength="2000"
+                android:maxLines="1" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/ic_more_horiz_black_24dp" />
+
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/send_chat_id"
+            android:layout_width="0dp"
+            android:layout_weight="0"
+            android:padding="7dp"
+            android:src="@drawable/ic_send_black_24dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>

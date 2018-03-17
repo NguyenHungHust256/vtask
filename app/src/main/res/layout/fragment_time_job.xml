@@ -1,0 +1,193 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.bahung.vtask.ui.fragment.MainChatFragment.TimeJobFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGrayBlur"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="7">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_timeline_black_24dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:text="TIẾN ĐỘ"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3.5" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:src="@drawable/ic_mode_edit_black_24dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="3">
+
+        <com.xw.repo.BubbleSeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="350dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:layout_weight="1"
+            app:bsb_bubble_color="@color/colorToolbar"
+            app:bsb_bubble_text_color="@color/colorWhite"
+            app:bsb_max="100"
+            app:bsb_min="0"
+            app:bsb_progress="0"
+            app:bsb_second_track_color="#004d40"
+            app:bsb_section_count="5"
+            app:bsb_section_text_position="bottom_sides"
+            app:bsb_show_progress_in_float="false"
+            app:bsb_show_section_mark="true"
+            app:bsb_show_section_text="true"
+            app:bsb_show_thumb_text="true"
+            app:bsb_track_color="#008604" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:text="Bắt đầu"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10px"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:layout_weight="1"
+                    android:text="09:00"
+                    android:textColor="@color/colorRed"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10px"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:layout_weight="1"
+                    android:text="12/01/2018"
+                    android:textColor="@color/colorRed"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10px"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:text="Thời gian"
+                    android:textSize="14sp"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10px"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:layout_weight="1"
+                    android:text="12 ngày"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/colorRed"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10px"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:text="Hoàn thành"
+                    android:textSize="14sp"
+                    android:gravity="right"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10px"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:layout_weight="1"
+                    android:text="09:00"
+                    android:textColor="@color/colorRed"
+                    android:textSize="14sp"
+                    android:gravity="right"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10px"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:layout_weight="1"
+                    android:text="12/01/2018"
+                    android:textColor="@color/colorRed"
+                    android:textSize="14sp"
+                    android:gravity="right"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10px"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
