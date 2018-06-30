@@ -8,18 +8,17 @@
     <item
         android:id="@+id/status_job_id"
         android:title=""
-
-        android:icon="@drawable/ic_brightness_1_black_36dp"
+        android:icon="@drawable/ic_brightness_1_black_24dp"
         app:showAsAction="always"/>
     <item
         android:id="@+id/time_job_id"
         android:title=""
-        android:icon="@drawable/ic_alarm_black_36dp"
+        android:icon="@drawable/ic_alarm_black_24dp"
         app:showAsAction="always"/>
     <item
         android:id="@+id/consider_job_id"
         android:title=""
-        android:icon="@drawable/ic_star_black_36dp"
+        android:icon="@drawable/ic_star_black_24dp"
         app:showAsAction="always"/>
     <item
         android:id="@+id/haha"

@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_sort"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_sort_black_24dp"
+        android:title="Sort"/>
+    <item
+        android:id="@+id/search_id"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always" />
 
     <item
-        android:title=""
-        android:id="@+id/search_id"
-        android:icon="@drawable/search"
-        app:showAsAction="always"/>
-        />
+        android:id="@+id/filterJob"
+        android:title="Lọc công việc"
+        android:icon="@drawable/ic_monetization_on_black_18dp"
+        app:showAsAction="collapseActionView"/>
+    <item
+        android:id="@+id/selectJob"
+        android:title="Chọn dự án"
+        app:showAsAction="collapseActionView"/>
+    <item
+        android:id="@+id/createJob"
+        android:title="Tạo công việc"
+        app:showAsAction="collapseActionView"/>
 </menu>

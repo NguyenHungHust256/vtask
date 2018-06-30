@@ -25,24 +25,39 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:visibility="invisible"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <TextView
-                android:text="Nhóm đã tham gia"
+                android:text="Nhóm của tôi"
                 android:layout_marginTop="5sp"
                 android:layout_marginLeft="14sp"
                 android:textColor="#646464"
-
                 android:textSize="14sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <ListView
                 android:layout_marginTop="14sp"
-                android:id="@+id/listview_group_menu"
+                android:id="@+id/listview_group_menu1"
+                android:layout_width="match_parent"
+                android:layout_height="160dp">
+
+            </ListView>
+            <TextView
+                android:text="Nhóm đã tham gia"
+                android:layout_marginTop="5sp"
+                android:layout_marginLeft="14sp"
+                android:textColor="#646464"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ListView
+                android:layout_marginTop="14sp"
+                android:id="@+id/listview_group_menu2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
             </ListView>
         </LinearLayout>
+
 
     </android.support.design.widget.NavigationView>
 

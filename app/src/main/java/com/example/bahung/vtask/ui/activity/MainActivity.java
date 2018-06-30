@@ -11,49 +11,68 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bahung.vtask.R;
 import com.example.bahung.vtask.bean.Group;
 import com.example.bahung.vtask.controller.MainActivityController;
 import com.example.bahung.vtask.ui.adapter.MenuAdapter;
+import com.example.bahung.vtask.ui.dialog.PresistentSingleChoiceSort;
+import com.example.bahung.vtask.ui.fragment.MemberFragment.MemberFragment;
+import com.example.bahung.vtask.ui.fragment.NotifyFragment.Notify_Fragment;
+import com.example.bahung.vtask.ui.fragment.ProjectFragment.ProjectFragment;
 import com.example.bahung.vtask.ui.fragment.TabJobFragment.TabJobFragment;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
+    private static final String TAG = "Test";
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     BottomNavigationView bottomNavigation;
-    ListView listViewGroupMenu;
+    ListView listViewGroupMenu1;
+    ListView listViewGroupMenu2;
     ArrayList<Group> dataGroup;
     ImageView navUpUser, navDownUser;
     LinearLayout layoutMenuGroup;
+    ArrayAdapter mAdapter;
+    TextView mEmptyView;
+    FrameLayout mFrameLayout;
+    ListView mListView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation_drawer);
 
-        toolbar =  findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         /**
          * Hieen nut back
          getSupportActionBar().setDisplayHomeAsUpEnabled(true);
          */
-
+        mFrameLayout = findViewById(R.id.myLayout);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
         bottomNavigation = findViewById(R.id.bottom_navigation);
+        mListView = (ListView) findViewById(R.id.list);
+        mEmptyView = (TextView) findViewById(R.id.emptyView);
 //        Bat id cho navUp va navDown
         View header = navigationView.getHeaderView(0);
         navUpUser = header.findViewById(R.id.up_nav_id);
@@ -77,25 +96,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navDownUser.setOnClickListener(this);
         toggle.syncState();
 //        Bat su kien cho listview
-        listViewGroupMenu = navigationView.findViewById(R.id.listview_group_menu);
+        listViewGroupMenu1 = navigationView.findViewById(R.id.listview_group_menu1);
+        listViewGroupMenu2 = navigationView.findViewById(R.id.listview_group_menu2);
         createDataGroupMenu();
 //        layoutmenuGroup
         layoutMenuGroup = navigationView.findViewById(R.id.layout_menu_group);
         MenuAdapter menuAdapter = new MenuAdapter(dataGroup, MainActivity.this);
-        listViewGroupMenu.setAdapter(menuAdapter);
+        listViewGroupMenu1.setAdapter(menuAdapter);
+        listViewGroupMenu2.setAdapter(menuAdapter);
+
+//        Listview cho search view
+        mAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.months_array));
+        mListView.setAdapter(mAdapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView adapterView, View view, int i, long l) {
+                Toast.makeText(MainActivity.this, adapterView.getItemAtPosition(i).toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        mListView.setEmptyView(mEmptyView);
         //Thuc hien addFragment cua item 0 in NAVBT
-        addFragment(R.id.myLayout, new TabJobFragment());
-//
+        replaceFragment(R.id.myLayout, new TabJobFragment());
+        mListView.setVisibility(View.GONE);
+
+
+        // Bat su kien instanceof
     }
 
     private void createDataGroupMenu() {
         dataGroup = new ArrayList<>();
-        dataGroup.add(new Group("","San xuat may tinh","nguyenbahung@gmail.com"));
-        dataGroup.add(new Group("","San xuat may tinh","nguyenbahung@gmail.com"));
-        dataGroup.add(new Group("","San xuat may tinh","nguyenbahung@gmail.com"));
+        dataGroup.add(new Group("", "San xuat may tinh", "nguyenbahung@gmail.com"));
+        dataGroup.add(new Group("", "San xuat may tinh", "nguyenbahung@gmail.com"));
+        dataGroup.add(new Group("", "San xuat may tinh", "nguyenbahung@gmail.com"));
+        dataGroup.add(new Group("", "San xuat may tinh", "nguyenbahung@gmail.com"));
+        dataGroup.add(new Group("", "San xuat may tinh", "nguyenbahung@gmail.com"));
+        dataGroup.add(new Group("", "San xuat may tinh", "nguyenbahung@gmail.com"));
+        dataGroup.add(new Group("", "San xuat may tinh", "nguyenbahung@gmail.com"));
+        dataGroup.add(new Group("", "San xuat may tinh", "nguyenbahung@gmail.com"));
+        dataGroup.add(new Group("", "San xuat may tinh", "nguyenbahung@gmail.com"));
     }
 
-    public void addFragment(int id, Fragment fragment) {
+    public void replaceFragment(int id, Fragment fragment) {
         String name = fragment.getClass().getName();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -104,27 +145,89 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         transaction.addToBackStack(name);
         transaction.commit();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem mSearch = menu.findItem(R.id.search_id);
+        SearchView mSearchView = (SearchView) mSearch.getActionView();
+        mSearchView.setQueryHint("Search");
+
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        if (currentapiVersion >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            mSearch.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+
+                @Override
+                public boolean onMenuItemActionCollapse(MenuItem item) {
+                    mListView.setVisibility(View.GONE);
+                    mFrameLayout.setVisibility(View.VISIBLE);
+                    bottomNavigation.setVisibility(View.VISIBLE);
+                    // Do something when collapsed
+                    Log.i(TAG, "onMenuItemActionCollapse " + item.getItemId());
+                    return true; // Return true to collapse action view
+                }
+
+                @Override
+                public boolean onMenuItemActionExpand(MenuItem item) {
+                    // TODO Auto-generated method stub
+                    mListView.setVisibility(View.VISIBLE);
+                    mFrameLayout.setVisibility(View.GONE);
+                    bottomNavigation.setVisibility(View.GONE);
+                    Log.i(TAG, "onMenuItemActionExpand " + item.getItemId());
+                    return true;
+                }
+            });
+        } else {
+            // do something for phones running an SDK before froyo
+            mSearchView.setOnCloseListener(new SearchView.OnCloseListener() {
+
+                @Override
+                public boolean onClose() {
+                    mListView.setVisibility(View.GONE);
+                    mFrameLayout.setVisibility(View.VISIBLE);
+                    bottomNavigation.setVisibility(View.VISIBLE);
+                    Log.i(TAG, "mSearchView on close ");
+                    // TODO Auto-generated method stub
+                    return false;
+                }
+            });
+        }
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id){
+        switch (id) {
             case R.id.search_id:
-                Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_sort:
+                PresistentSingleChoiceSort dialogFragment = new PresistentSingleChoiceSort();
+                dialogFragment.show(getSupportFragmentManager(),"");
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        switch(id){
+        switch (id) {
             case R.id.subject_id:
 
                 Toast.makeText(this, "Chủ đề Dự án", Toast.LENGTH_SHORT).show();
@@ -148,16 +251,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Đã tham gia", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_one:
-                addFragment(R.id.myLayout, new TabJobFragment());
+                replaceFragment(R.id.myLayout, new TabJobFragment());
                 Toast.makeText(this, "action_One", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_two:
+                replaceFragment(R.id.myLayout, new ProjectFragment());
                 Toast.makeText(this, "action_two", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_three:
+                replaceFragment(R.id.myLayout, new Notify_Fragment());
                 Toast.makeText(this, "action_three", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_four:
+                replaceFragment(R.id.myLayout, new MemberFragment());
                 Toast.makeText(this, "action_four", Toast.LENGTH_SHORT).show();
                 break;
         }
@@ -167,10 +273,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             super.onBackPressed();
         }
 
@@ -178,13 +283,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onClick(View v) {
-        if(v.getId()== R.id.up_nav_id){
-                navigationView.getMenu().clear();
+        if (v.getId() == R.id.up_nav_id) {
+            navigationView.getMenu().clear();
 //                navigationView.inflateMenu(R.menu.menu_group_join);
             layoutMenuGroup.setVisibility(View.VISIBLE);
-                navUpUser.setVisibility(View.GONE);
-                navDownUser.setVisibility(View.VISIBLE);
-        } else if(v.getId() == R.id.down_nav_id){
+            navUpUser.setVisibility(View.GONE);
+            navDownUser.setVisibility(View.VISIBLE);
+        } else if (v.getId() == R.id.down_nav_id) {
             navigationView.getMenu().clear();
             layoutMenuGroup.setVisibility(View.GONE);
             navigationView.inflateMenu(R.menu.navigation_menu);

@@ -20,14 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.MainChatActivity"
-
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
-
-        </activity>
-        <activity android:name=".ui.activity.DetailJobActivity">
-
-        </activity>
+        <activity
+            android:name=".ui.activity.MainChatActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity android:name=".ui.activity.DetailJobActivity" />
+        <activity android:name=".ui.activity.CreateJobActivity" />
+        <activity android:name=".ui.activity.AddMemberActivity"></activity>
     </application>
 
 </manifest>

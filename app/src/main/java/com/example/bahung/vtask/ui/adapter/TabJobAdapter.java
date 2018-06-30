@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.bahung.vtask.ui.fragment.TabJobFragment.DoingProjectFragment;
 import com.example.bahung.vtask.ui.fragment.TabJobFragment.WaitingProjectFragment;
 
 /**
@@ -23,7 +22,7 @@ public class TabJobAdapter extends FragmentPagerAdapter {
             fragment = new WaitingProjectFragment();
 
         } else if(position == 1){
-            fragment = new DoingProjectFragment();
+            fragment = new WaitingProjectFragment();
         } else if(position == 2){
             fragment = new WaitingProjectFragment();
         }

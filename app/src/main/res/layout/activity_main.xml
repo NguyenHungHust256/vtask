@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
+    app:actionViewClass="android.support.v7.widget.SearchView"
     tools:context="com.example.bahung.vtask.ui.activity.MainActivity">
 
     <android.support.v7.widget.Toolbar
@@ -16,11 +17,27 @@
         android:layout_height="?attr/actionBarSize">
     </android.support.v7.widget.Toolbar>
 
+    <ListView
+        android:id="@+id/list"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/emptyView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No Results"
+        android:textSize="20sp"
+        android:visibility="gone" />
     <FrameLayout
         android:id="@+id/myLayout"
         android:layout_width="match_parent"
         android:layout_weight="9"
         android:layout_height="0dp">
+
     </FrameLayout>
 
     <View
